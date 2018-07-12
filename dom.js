@@ -36,6 +36,7 @@
     var todoSpanNode = document.createElement("span");
     todoSpanNode.textContent = todo.description;
     todoSpanNode.addEventListener("click", function(event) {
+      var editing = true;
       var todoText = todoSpanNode.textContent;
       var editInputContainer = document.createElement("form");
       var editInput = document.createElement("input");
@@ -49,11 +50,30 @@
       todoNode.replaceChild(editInputContainer, todoSpanNode);
       editInputContainer.addEventListener("submit", function(event) {
         event.preventDefault();
+        var editing = false;
         todoText = event.target[0].value;
         var newState = todoFunctions.editTodo(state, todoText, todo.id);
         todoSpanNode.textContent = todoText;
         todoNode.replaceChild(todoSpanNode, editInputContainer);
       });
+      // deselect edit upon click elsewhere
+      if (editing) {
+        document.addEventListener("click", function(event) {
+          var exception1 = editInput;
+          var exception2 = todoSpanNode;
+          var target = event.target;
+          if (
+            !target.isEqualNode(exception1) &&
+            !target.isEqualNode(exception2)
+          ) {
+            var editing = false;
+            todoText = editInput.value;
+            var newState = todoFunctions.editTodo(state, todoText, todo.id);
+            todoSpanNode.textContent = todoText;
+            todoNode.replaceChild(todoSpanNode, editInputContainer);
+          }
+        });
+      }
     });
     todoNode.appendChild(todoSpanNode);
 
