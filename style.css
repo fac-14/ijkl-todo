@@ -128,3 +128,19 @@ input[type="submit"] {
   border: none;
   font-family: Karla, sans-serif;
 }
+
+#edit {
+  width: 100%;
+  padding: 5px;
+  font-size: 1rem;
+  border-radius: 2px;
+  font-family: Karla, sans-serif;
+  border: 2px solid skyblue;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+li form {
+  margin: 0 1rem;
+  width: 90%;
+}

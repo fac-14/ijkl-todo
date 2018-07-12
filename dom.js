@@ -38,12 +38,13 @@
     todoSpanNode.addEventListener("click", function(event) {
       var todoText = todoSpanNode.textContent;
       var editInputContainer = document.createElement("form");
-      editInputContainer.setAttribute("id", "edit");
       var editInput = document.createElement("input");
       editInput.value = todoText;
+      editInput.setAttribute("id", "edit");
       editInput.setAttribute("type", "text");
       editInput.setAttribute("autocomplete", "off");
       editInput.required = true;
+      editInput.autofocus = true;
       editInputContainer.appendChild(editInput);
       todoNode.replaceChild(editInputContainer, todoSpanNode);
       editInputContainer.addEventListener("submit", function(event) {
