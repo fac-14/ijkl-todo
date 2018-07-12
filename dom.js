@@ -43,8 +43,8 @@
       editInput.setAttribute("id", "edit");
       editInput.setAttribute("type", "text");
       editInput.setAttribute("autocomplete", "off");
+      editInput.setAttribute("maxlength", "100");
       editInput.required = true;
-      editInput.autofocus = true;
       editInputContainer.appendChild(editInput);
       todoNode.replaceChild(editInputContainer, todoSpanNode);
       editInputContainer.addEventListener("submit", function(event) {
