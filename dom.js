@@ -5,7 +5,8 @@
   // This is the dom node where we will keep our todo
   var container = document.getElementById("todo-container");
   var addTodoForm = document.getElementById("add-todo");
-  var editTodoItem = document.getElementById("edit");
+  var editTodoItem = document.getElementById("edit"); // is this necessary?
+  var editing = false;
 
   var state = [
     { id: -3, description: "first todo", done: false },
@@ -35,24 +36,51 @@
     // add span holding description
     var todoSpanNode = document.createElement("span");
     todoSpanNode.textContent = todo.description;
+
+    // add listening event to start edit
     todoSpanNode.addEventListener("click", function(event) {
-      var todoText = todoSpanNode.textContent;
-      var editInputContainer = document.createElement("form");
-      editInputContainer.setAttribute("id", "edit");
-      var editInput = document.createElement("input");
-      editInput.value = todoText;
+      editing = true; // edit in progress
+      var todoText = todoSpanNode.textContent; // get text of current todo
+      var editInputContainer = document.createElement("form"); // create form element
+      var editInput = document.createElement("input"); // create input element
+      editInput.value = todoText; // set input value to current todo text
+      // set correct attributes for input element
+      editInput.setAttribute("id", "edit");
       editInput.setAttribute("type", "text");
       editInput.setAttribute("autocomplete", "off");
+      editInput.setAttribute("maxlength", "100");
       editInput.required = true;
-      editInputContainer.appendChild(editInput);
-      todoNode.replaceChild(editInputContainer, todoSpanNode);
+      editInputContainer.appendChild(editInput); // make input element child node of form
+      todoNode.replaceChild(editInputContainer, todoSpanNode); // replace original span with form
+      // event listener to submitting edited text
       editInputContainer.addEventListener("submit", function(event) {
-        event.preventDefault();
-        todoText = event.target[0].value;
-        var newState = todoFunctions.editTodo(state, todoText, todo.id);
-        todoSpanNode.textContent = todoText;
-        todoNode.replaceChild(todoSpanNode, editInputContainer);
+        // upon pressing enter
+        event.preventDefault(); // don't reload
+        var editing = false; // no longer editing
+        todoText = event.target[0].value; // save new text in variable
+        var newState = todoFunctions.editTodo(state, todoText, todo.id); // save new text to object array
+        todoSpanNode.textContent = todoText; // add new todo text to original span node
+        todoNode.replaceChild(todoSpanNode, editInputContainer); // replace form/input node with span node containing new text
       });
+
+      // deselect edit upon click elsewhere
+      if (editing) {
+        document.addEventListener("click", function(event) {
+          var exception1 = editInput;
+          var exception2 = todoSpanNode;
+          var target = event.target;
+          if (
+            !target.isEqualNode(exception1) &&
+            !target.isEqualNode(exception2)
+          ) {
+            editing = false;
+            todoText = editInput.value;
+            var newState = todoFunctions.editTodo(state, todoText, todo.id);
+            todoSpanNode.textContent = todoText;
+            todoNode.replaceChild(todoSpanNode, editInputContainer); // some weird error, haven't fixed yet
+          }
+        });
+      }
     });
     todoNode.appendChild(todoSpanNode);
 
