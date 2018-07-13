@@ -1,185 +1,184 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(60deg, lightyellow, skyblue);
-  min-height: 100vh;
-  height: 100%;
-  font-family: "Karla", sans-serif;
-  font-weight: 400;
-  color: #525b76;
+    background: linear-gradient(60deg, lightyellow, skyblue);
+    min-height: 100vh;
+    height: 100%;
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    color: #525b76;
 }
 
 h1 {
-  text-align: center;
-  font-weight: 700;
+    text-align: center;
+    font-weight: 700;
 }
 
 #todo-container {
-  width: 90%;
-  margin: auto;
-  margin-bottom: 7.5rem;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 7.5rem;
 }
 
 ul {
-  list-style-type: none;
-  padding-left: 0;
-  margin: 0;
-  width: 100%;
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    width: 100%;
 }
 
 li {
-  display: flex;
-  width: 100%;
-  background: white;
-  margin-top: 10px;
-  border: none;
-  border-radius: 2px;
-  align-items: center;
-  padding: 1rem;
-  justify-content: space-between;
+    display: flex;
+    width: 100%;
+    background: white;
+    margin-top: 10px;
+    border: none;
+    border-radius: 2px;
+    align-items: center;
+    padding: 1rem;
+    justify-content: space-between;
 }
 
 span {
-  display: block;
-  width: 90%;
-  /* word-wrap: break-word; */
-  word-break: break-word;
-  padding: 5px 0;
-  margin: 0 1rem;
-  text-align: left;
-  flex-grow: 1;
+    display: block;
+    width: 90%;
+    word-break: break-word;
+    padding: 5px 0;
+    margin: 0 1rem;
+    text-align: left;
+    flex-grow: 1;
 }
 
 /* ------- button styling ----------- */
 
 button {
-  display: block;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 2px;
-  outline: none;
+    display: block;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 2px;
+    outline: none;
 }
 
 .mark-btn {
-  width: 24px;
-  height: 24px;
-  background: #ecf0f1;
-  margin: 0 0.875rem;
+    width: 24px;
+    height: 24px;
+    background: #ecf0f1;
+    margin: 0 0.875rem;
 }
 
 .del-btn {
-  /* margin-left: auto; */
-  background-image: url(img/cross.svg);
-  background-size: cover;
-  background-color: #f890aa;
-  width: 48px;
-  min-width: 48px;
-  height: 48px;
-  border-radius: 100%;
+    /* margin-left: auto; */
+    background-image: url(img/cross.svg);
+    background-size: cover;
+    background-color: #f890aa;
+    width: 48px;
+    min-width: 48px;
+    height: 48px;
+    border-radius: 100%;
 }
 
 .delete {
-  background: #dd6281 !important;
-  color: white;
+    background: #dd6281 !important;
+    color: white;
 }
 
 .delete .del-btn {
-  background-color: #45bcb1;
-  background-image: none;
-  color: white;
-  border: 2px solid white;
+    background-color: #45bcb1;
+    background-image: none;
+    color: white;
+    border: 2px solid white;
 }
 
 .marked .mark-btn {
-  background: #45bcb1;
+    background: #45bcb1;
 }
 .marked span {
-  text-decoration: line-through;
+    text-decoration: line-through;
 }
 .marked {
-  background: #ecf0f1;
+    background: #ecf0f1;
 }
 
 /* --------- Add new todo styles --------- */
 
 #add-todo {
-  margin-top: 50px;
-  position: fixed;
-  bottom: 0;
-  width: 90vw;
-  left: 5%;
+    margin-top: 50px;
+    position: fixed;
+    bottom: 0;
+    width: 90vw;
+    left: 5%;
 }
 
 input[name="description"] {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  border-radius: 2px;
-  border: none;
-  font-family: Karla, sans-serif;
-  color: #525b76;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 2px;
+    border: none;
+    font-family: Karla, sans-serif;
+    color: #525b76;
 }
 
 input[name="description"]:focus {
-  outline-color: lightskyblue;
+    outline-color: lightskyblue;
 }
 
 input[type="submit"] {
-  width: 100%;
-  background: #525b76;
-  color: white;
-  padding: 1rem;
-  font-size: 1.2rem;
-  border: none;
-  font-family: Karla, sans-serif;
-  border-radius: 2px;
+    width: 100%;
+    background: #525b76;
+    color: white;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: none;
+    font-family: Karla, sans-serif;
+    border-radius: 2px;
 }
 
 #edit {
-  width: 100%;
-  padding: 5px;
-  font-size: 1rem;
-  border-radius: 2px;
-  font-family: Karla, sans-serif;
-  border: 2px solid skyblue;
-  box-sizing: border-box;
-  text-align: left;
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 2px;
+    font-family: Karla, sans-serif;
+    border: 2px solid skyblue;
+    box-sizing: border-box;
+    text-align: left;
 }
 
 li form {
-  margin: 0 1rem;
-  width: 90%;
+    margin: 0 1rem;
+    width: 90%;
 }
 
 /* Media queries for larger screens */
 
 @media (min-width: 850px) {
-  body {
-    overflow: hidden;
-  }
+    body {
+        overflow: hidden;
+    }
 
-  #todo-container {
-    max-width: 37.5rem;
-    margin-top: 6rem;
-    height: 538px;
-    overflow-y: scroll;
-    margin-bottom: 0;
-  }
+    #todo-container {
+        max-width: 37.5rem;
+        margin-top: 6rem;
+        height: 538px;
+        overflow-y: auto;
+        margin-bottom: 0;
+    }
 
-  #add-todo {
-    max-width: 37.5rem;
-    left: calc((100vw - 37.5rem) / 2);
-    bottom: 3rem;
-  }
+    #add-todo {
+        max-width: 37.5rem;
+        left: calc((100vw - 37.5rem) / 2);
+        bottom: 3rem;
+    }
 
-  h1 {
-    text-align: left;
-    padding: 3rem 3.2rem;
-    position: fixed;
-    margin: 0;
-    font-size: 3rem;
-    top: 0;
-  }
+    h1 {
+        text-align: left;
+        padding: 3rem 3.2rem;
+        position: fixed;
+        margin: 0;
+        font-size: 3rem;
+        top: 0;
+    }
 }
