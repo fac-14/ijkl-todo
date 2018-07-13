@@ -5,7 +5,7 @@
   // This is the dom node where we will keep our todo
   var container = document.getElementById("todo-container");
   var addTodoForm = document.getElementById("add-todo");
-  var editTodoItem = document.getElementById("edit"); // is this necessary?
+  //var editTodoItem = document.getElementById("edit"); // is this necessary?
   var editing = false;
 
   var state = [
@@ -39,13 +39,6 @@
 
     // add listening event to start edit
     todoSpanNode.addEventListener("click", function(event) {
-      editing = true; // edit in progress
-      var todoText = todoSpanNode.textContent;
-      var editInputContainer = document.createElement("form"); // create form element
-      editInputContainer.innerHTML =
-        '<input id="edit" type="text" maxlength="100" autocomplete="off" value="' +
-        todoText +
-        '" required/>';
       // var editInput = document.createElement("input"); // create input element
       // editInput.value = todoText; // set input value to current todo text
       // // set correct attributes for input element
@@ -55,36 +48,65 @@
       // editInput.setAttribute("maxlength", "100");
       // editInput.required = true;
       //editInputContainer.appendChild(editInput); // make input element child node of form
+      editing = true; // edit in progress
+      var todoText = todoSpanNode.textContent;
+      var editInputContainer = document.createElement("form"); // create form element
+      editInputContainer.innerHTML =
+        '<input id="edit" type="text" maxlength="100" autocomplete="off" value="' +
+        todoText +
+        '" required/>';
       todoNode.replaceChild(editInputContainer, todoSpanNode); // replace original span with form
       // event listener to submitting edited text
       editInputContainer.addEventListener("submit", function(event) {
         // upon pressing enter
         event.preventDefault(); // don't reload
-        var editing = false; // no longer editing
+        editing = false; // no longer editing
         todoText = event.target[0].value; // save new text in variable
         var newState = todoFunctions.editTodo(state, todoText, todo.id); // save new text to object array
-        todoSpanNode.textContent = todoText; // add new todo text to original span node
-        todoNode.replaceChild(todoSpanNode, editInputContainer); // replace form/input node with span node containing new text
+        update(newState);
+        //todoSpanNode.textContent = todoText; // add new todo text to original span node
+        //todoNode.replaceChild(todoSpanNode, editInputContainer); // replace form/input node with span node containing new text
+        // while (activeElement)
       });
 
       // deselect edit upon click elsewhere
-      if (editing) {
-        document.addEventListener("click", function(event) {
-          var exception1 = editInputContainer;
-          var exception2 = todoSpanNode;
-          var target = event.target;
-          if (
-            !target.isEqualNode(exception1) &&
-            !target.isEqualNode(exception2)
-          ) {
-            editing = false;
-            todoText = editInputContainer.firstChild.value;
-            var newState = todoFunctions.editTodo(state, todoText, todo.id);
-            todoSpanNode.textContent = todoText;
-            todoNode.replaceChild(todoSpanNode, editInputContainer); // some weird error, haven't fixed yet
-          }
-        });
-      }
+      // document.addEventListener("click", function(event) {
+      // var _isEditing = false;
+      // function isEditing() {
+      //   return _isEditing;
+      // }
+      // function setEditing(val) {
+      //   if (arguments.length < 1) {
+      //     val = true;
+      //   }
+      //   if (!_isEditing && val) {
+      //     _isEditing = val;
+      //     console.log("what's happening?");
+      //     todoText = editInputContainer.firstChild.value;
+      //     var newState = todoFunctions.editTodo(state, todoText, todo.id);
+      //     update(newState);
+      //   }
+      //   _isEditing = val;
+      // }
+      // var ready = isEditing();
+      // setEditing();
+      // setEditing(false);
+      // console.log(todoNode.firstChild.nextSibling);
+      // console.log("event target: ", event.target);
+      // if (
+      //   editing &&
+      //   !event.target.isEqualNode(todoNode.firstChild.nextSibling) &&
+      //   !event.target.isEqualNode(todoSpanNode)
+      // ) {
+      //   console.log("clicking exception not working");
+      //   editing = false;
+      //   todoText = editInputContainer.firstChild.value;
+      //   var newState = todoFunctions.editTodo(state, todoText, todo.id);
+      //   update(newState);
+      //   todoSpanNode.textContent = todoText;
+      //   todoNode.replaceChild(todoSpanNode, editInputContainer); // some weird error, haven't fixed yet
+      // }
+      // });
     });
     todoNode.appendChild(todoSpanNode);
 
