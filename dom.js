@@ -101,6 +101,7 @@
         deleteButtonNode.parentNode.classList.add("delete");
         window.setTimeout(function() {
           deleteButtonNode.parentNode.classList.remove("delete");
+          deleteButtonNode.textContent = "";
         }, 4000);
       }
     });
