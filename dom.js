@@ -40,17 +40,21 @@
     // add listening event to start edit
     todoSpanNode.addEventListener("click", function(event) {
       editing = true; // edit in progress
-      var todoText = todoSpanNode.textContent; // get text of current todo
+      var todoText = todoSpanNode.textContent;
       var editInputContainer = document.createElement("form"); // create form element
-      var editInput = document.createElement("input"); // create input element
-      editInput.value = todoText; // set input value to current todo text
-      // set correct attributes for input element
-      editInput.setAttribute("id", "edit");
-      editInput.setAttribute("type", "text");
-      editInput.setAttribute("autocomplete", "off");
-      editInput.setAttribute("maxlength", "100");
-      editInput.required = true;
-      editInputContainer.appendChild(editInput); // make input element child node of form
+      editInputContainer.innerHTML =
+        '<input id="edit" type="text" maxlength="100" autocomplete="off" value="' +
+        todoText +
+        '" required/>';
+      // var editInput = document.createElement("input"); // create input element
+      // editInput.value = todoText; // set input value to current todo text
+      // // set correct attributes for input element
+      // editInput.setAttribute("id", "edit");
+      // editInput.setAttribute("type", "text");
+      // editInput.setAttribute("autocomplete", "off");
+      // editInput.setAttribute("maxlength", "100");
+      // editInput.required = true;
+      //editInputContainer.appendChild(editInput); // make input element child node of form
       todoNode.replaceChild(editInputContainer, todoSpanNode); // replace original span with form
       // event listener to submitting edited text
       editInputContainer.addEventListener("submit", function(event) {
@@ -66,7 +70,7 @@
       // deselect edit upon click elsewhere
       if (editing) {
         document.addEventListener("click", function(event) {
-          var exception1 = editInput;
+          var exception1 = editInputContainer;
           var exception2 = todoSpanNode;
           var target = event.target;
           if (
@@ -74,7 +78,7 @@
             !target.isEqualNode(exception2)
           ) {
             editing = false;
-            todoText = editInput.value;
+            todoText = editInputContainer.firstChild.value;
             var newState = todoFunctions.editTodo(state, todoText, todo.id);
             todoSpanNode.textContent = todoText;
             todoNode.replaceChild(todoSpanNode, editInputContainer); // some weird error, haven't fixed yet
